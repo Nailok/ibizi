@@ -6,7 +6,6 @@ puts 'seed = (a*X+b)*mod(m)'
 
 puts "Vvedite nachal'noe X: "
 x = gets.chomp.to_i
-main = LCG.new(x)
 
 puts 'Vvedite a: '
 a = gets.chomp.to_i
@@ -17,20 +16,21 @@ b = gets.chomp.to_i
 puts 'Vvedite m: '
 m = gets.chomp.to_i
 
-i = 0
-output_string = ""
 
-puts
-puts "Sequence: "
-while i < 5
-  num = main.lcg(a, b, m)
-  i+=1
-  output_string << num.to_s(2)
-  print num.to_s(2)
-end
+# main = LCG.new()
 
-puts
-puts '----------------------------------------------'
+main = LCG.new(x, a, b, m)
 
+puts 'Vvedite kol-vo bitov'
+bits = gets.chomp.to_i
+puts bits
+# previous = main.lcg(a, b, m)
+
+# num = main.lcg(a, b, m)
+
+output_string = main.generate_bits(bits)
+puts output_string
+
+puts 'Frequency test: '
 FileOperations.write_to_file(output_string)
 FrequencyTest.test("sequence.txt")
